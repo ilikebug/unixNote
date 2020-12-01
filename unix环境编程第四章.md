@@ -110,3 +110,66 @@ mode_t umask(mode_t cmask);
 | 0002   | 其他写   |
 | 0001   | 其他执行 |
 
+ ## 4.6 函数chomd、fchmod和fchmodat
+
+```c
+#include <sys/stat.h>
+int chmod(const char *pathname, mode_t mode);
+int fchmod(int fd, mode_t mode);
+int fchmodat(int fd, const char *pathname, mode_t mode, int flag);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：设置文件权限
+
+### mode参数
+
+| mode     | Desc               |
+| -------- | ------------------ |
+| S_ISUID  | 执行设置用户id     |
+| S_ISGID  | 执行设置组id       |
+| S_ISVTX  | 保存正文（粘着位） |
+| S_ISRWXU | 用户读、写和执行   |
+| S_IRUSR  | 读                 |
+| S_IWUSR  | 写                 |
+| S_IXUSR  | 执行               |
+| S_IRWXG  | 组读、写和执行     |
+| S_IRGRP  | 读                 |
+| S_IWGRP  | 写                 |
+| S_IXGRP  | 执行               |
+| S_IRWXO  | 其他读、写和执行   |
+| S_IROTH  | 读                 |
+| S_IWOTH  | 写                 |
+| S_IXOTH  | 执行               |
+
+## 4.7 粘着位特性
+
+如果对一个目录设置了粘着位，拥有以下点才能删除或重命名文件：
+
+- 拥有此文件
+- 拥有此目录
+- 是超级用户
+
+## 4.8 函数 chown、fchown、fchownat和lchown
+
+```c
+#include <unistd.h>
+int chown(const char *pathname, uid_t owner, gid_t group);
+int fchown(int fd, uid_t owner, gid_t group);
+int fchownat(int fd, const char *pathname, uid_t owner, gid_t group, int flag);
+int lchown(const char *pathname, uid_t owner, gid_t group);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：修改文件所有者
+
+## 4.9文件截断
+
+```c
+#include <unistd.h>
+int truncate(const char *pathname, off_t length);
+int ftruncate(int fd, off_t length);
+```
+
