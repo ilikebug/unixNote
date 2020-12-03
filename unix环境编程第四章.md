@@ -173,3 +173,35 @@ int truncate(const char *pathname, off_t length);
 int ftruncate(int fd, off_t length);
 ```
 
+## 4.10函数link、linkat、unlink、unlinkat和remove
+
+```c
+#include <unistd.h>
+int link(const char *existingpath, const char *newpath);
+int linkat(int efd, const char *existingpath, const char *newpath, int flag);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：创建硬链接
+
+```c
+#include <unistd.h>
+int unlink(const char *pathname);
+int unlinkat(int fd, const char *pathname, int flag);
+#include <stdio.h>
+int remove(const char *pathname);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：解除硬链接
+
+## 4.11函数rename和renameat
+
+```c
+#include <stdio.h>
+int rename(const char *oldname, const char *newname);
+int renameat(int oldfd, const char *oldname, int newfd, const char *newname);
+```
+
