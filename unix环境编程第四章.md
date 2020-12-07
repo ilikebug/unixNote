@@ -205,3 +205,30 @@ int rename(const char *oldname, const char *newname);
 int renameat(int oldfd, const char *oldname, int newfd, const char *newname);
 ```
 
+## 4.12创建和读取符号链接
+
+ ```c
+#include <unistd.h>
+int symlink(const char *actualpath, const char *sympath);
+int symlinkat(const char *actualpath, int fd, const char *sympath);
+ ```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：创建符号链接
+
+```c
+#include <unistd.h>
+ssize_t readlink(const char *restrict pathname, char *restrict buf, size_t bufsize);
+ssize_t readlink(int fd, const char *restrict pathname, char *restrict buf, size_t bufsize);
+```
+
+返回值：成功，返回读取字节数；失败，返回-1
+
+Func：读取符号链接
+
+## 4.13文件时间
+
+- st_atim	文件数据的最后访问时间
+- st_mtim   文件数据的最后修改时间
+- st_ctim     i节点状态的最后修改时间
