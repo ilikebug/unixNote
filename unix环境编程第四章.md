@@ -232,3 +232,72 @@ Func：读取符号链接
 - st_atim	文件数据的最后访问时间
 - st_mtim   文件数据的最后修改时间
 - st_ctim     i节点状态的最后修改时间
+
+## 4.14 函数futimens、utimensat
+
+```c
+#include <sys/stat.h>
+int futimens(int fd, const struct timespec times[2]);
+int utimensat(int fd, const char *path, const struct timespec times[2], int flag);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：修改文件的访问时间和修改时间
+
+## 4.15函数mkdir、mkdirat和rmdir
+
+```c
+#include <sys/stat.h>
+int mkdir(const char *pathname, mode_t mode);
+int mkdirat(int fd, const char *pathname, mode_t mode);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：创建目录
+
+```c
+#include <unistd.h>
+int rmdir(const char *pathname);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：删除一个空目录
+
+## 4.16读目录
+
+```c
+#include <dirent.h>
+DIR *opendir(const char *pathname);
+DIR *fdopendir(inf fd);
+						//成功，返回指针；失败，返回NULL
+struct dirent *readdir(DIR *dp);
+						//成功返回指针，失败返回NULL
+void rewinddir(DIR *dp);
+int closedir(DIR *dp);
+long telldir(DIR *dp);
+void seekdir(DIR *dp, long loc);
+```
+
+## 4.17函数chdir、fchdir和getcwd
+
+```c
+#include <unistd.h>
+int chdir(const char *pathname);
+int fchdir(int fd);
+```
+
+返回值：成功，返回0；失败，返回-1
+
+Func：切换目录
+
+```c
+#include <unistd.h>
+char *getcwd(char *buf, size_t size);
+```
+
+返回值：成功，返回buf；失败，返回NULL
+
+Func：获取当前路径
