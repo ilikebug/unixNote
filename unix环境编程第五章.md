@@ -1,6 +1,6 @@
 # 第五章 标准I/O
 
-## 5.1 流很和FILE对象
+## 5.1 流和FILE对象
 
 ```c
 #include <stdio.h>
